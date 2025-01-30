@@ -26,6 +26,7 @@ const AddDoctor = () => {
         return toast.error("Image Not Selected");
       }
       const formData = new FormData();
+      formData.append('image',docImg)
       formData.append("name", name);
       formData.append("email", email);
       formData.append("password", password);
@@ -52,10 +53,21 @@ const AddDoctor = () => {
       );
       if(data.success){
         toast.success(data.message)
+        setDocImg(false);
+        setName('')
+        setPassword('')
+        setEmail('')
+        setAddress1('')
+        setAddress2('')
+        setDegree('')
+        setAbout('')
+        setFees('')
       }else{
         toast.error(data.message)
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
 
   return (
